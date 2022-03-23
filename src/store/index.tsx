@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 const initTodo: RawTodo[] = []
 
-const todoReducer = createSlice({
+const todoReducer = createSlice({ // dinh nghia 1 cai reducer su dung createSlide
     name: 'todoReducer',
     initialState: initTodo,
     reducers: {
@@ -23,22 +23,22 @@ const todoReducer = createSlice({
     }
 })
 
-export const {update, deleteTodo} = todoReducer.actions
+export const {update, deleteTodo} = todoReducer.actions // goi ra cac action cua todoReducer
 
-export const store = configureStore({
+export const store = configureStore({ // khoi tao reducer
     reducer: {
         todoReducer: todoReducer.reducer
     }
 })
 
-export const useTodos = () => {
+export const useTodos = () => { // connect vao store de lay ra danh sach todo
     return useSelector(state => state.todoReducer)
 }
 
-export const updateTodoAction = (val: RawTodo) => {
+export const updateTodoAction = (val: RawTodo) => { // dispatch vao action update cua todoReducer
     return store.dispatch(update(val))
 }
 
-export const removeTodoAction = (val: RawTodo) => {
+export const removeTodoAction = (val: RawTodo) => { // dispatch vao action update cua todoReducer
     return store.dispatch(deleteTodo(val))
 }
